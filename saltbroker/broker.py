@@ -29,7 +29,7 @@ class PubBroker(multiprocessing.Process):
     def __init__(self, opts):
         super(PubBroker, self).__init__()
         self.opts = opts
-        self.opts['master_ip'] = salt.utils.dns_check(self.opts['master'], self.opts['publish_port'])
+        self.opts['master_ip'] = salt.utils.dns_check(self.opts['master'], int(self.opts['publish_port']))
 
     def run(self):
         '''
@@ -85,7 +85,7 @@ class RetBroker(multiprocessing.Process):
     def __init__(self, opts):
         super(RetBroker, self).__init__()
         self.opts = opts
-        self.opts['master_ip'] = salt.utils.dns_check(self.opts['master'], self.opts['ret_port'])
+        self.opts['master_ip'] = salt.utils.dns_check(self.opts['master'], int(self.opts['ret_port']))
 
     def run(self):
         '''
